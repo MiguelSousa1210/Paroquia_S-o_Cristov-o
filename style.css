@@ -1,7 +1,5 @@
-/* ==============================================
-   1. VARIÁVEIS GLOBAIS
-   Definição de cores, sombras e valores reutilizáveis
-============================================== */
+/* VARIÁVEIS GLOBAIS
+   Definição de cores, sombras e valores reutilizáveis*/
 :root {
   --creme: #f5edd8;
   --creme-escuro: #e8d9b8;
@@ -15,10 +13,8 @@
 }
 
 
-/* ==============================================
-   2. RESET E ESTILOS BASE
-   Configurações gerais para todos os elementos
-============================================== */
+/* RESET E ESTILOS BASE
+   Configurações gerais para todos os elementos*/
 * {
   margin: 0;
   padding: 0;
@@ -42,10 +38,8 @@ a {
 }
 
 
-/* ==============================================
-   3. NAVBAR (BARRA DE NAVEGAÇÃO)
-   Menu superior fixo, logo, links e botão hambúrguer
-============================================== */
+/* NAVBAR (BARRA DE NAVEGAÇÃO)
+   Menu superior fixo, logo, links e botão hambúrguer */
 /* NAVBAR */
 .navbar {
   position: fixed;
@@ -58,8 +52,7 @@ a {
   align-items: center;
   background: var(--azul);
   transition: 0.3s;
-  border-bottom: 3px solid var(--dourado);
-  /* ✅ SOMBRA ADICIONADA: suave, escura e bem posicionada */
+  border-bottom: 3px solid var(--dourado); /* SOMBRA ADICIONADA: suave, escura e bem posicionada */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
 
@@ -67,7 +60,7 @@ a {
 .navbar.scrolled {
   padding: 10px 7%;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-} 
+}
 
 /* Logo e marca */
 .logo {
@@ -129,43 +122,9 @@ a {
   color: var(--branco);
 }
 
-/* Botão hambúrguer (versão mobile) */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 5px; 
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.hamburger span {
-  width: 26px;
-  height: 2px;
-  background: var(--creme);
-  transition: 0.3s;
-}
-
-/* Estado ativo do hambúrguer (transforma em X) */
-.hamburger.active span:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-
-/* ==============================================
-   4. SEÇÃO HERO (CABEÇALHO PRINCIPAL)
-   Área de destaque inicial com texto e carrossel
-============================================== */
-.hero {
-  min-height: 105vh;
+/* SEÇÃO S1 (CABEÇALHO PRINCIPAL) */
+.S1 {
+  min-height: 100vh;
   background: linear-gradient(
     -110deg,
     var(--vinho) 0%,
@@ -181,101 +140,64 @@ a {
   padding: 130px 7% 70px;
 }
 
-.hero-content {
+.S1-content {
   max-width: 720px;
+  position: relative;
+  padding-left: 0;
+  text-align: left;
 }
 
-.hero-tag {
-  color: var(--vinho);
-  font-family: "Raleway", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 0.85rem;
-}
-
-.hero-logo{
-  width: 140px;
+.S1-logo {
+  width: 130px;
   height: auto;
+  margin-bottom: 20px;
+  position: static;
+}
+
+.S1 h1 {
+  margin-left: 0;
+  position: static;
+}
+
+.linha1 {
   display: block;
-  margin: 10px 0 20px 0;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,0.18));
-  transition: 0.3s;
+  color: #0d2545;
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: 1.1;
 }
 
-.hero-logo:hover{
-  transform: scale(1.05);
-}
-
-/* Linhas de título */
-.linha1{
-  display:block;
-  color:#0d2545;
-  font-size: clamp(3rem, 5vw, 6.2rem);
-  line-height: 1;
-}
-
-.linha2{
-  display:block;
-  color:#8b1732;
-  font-size: clamp(3rem, 5vw, 6.2rem);
-  line-height: 1;
+.linha2 {
+  display: block;
+  color: #8b1732;
+  font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: 1.1;
   margin-top: 10px;
 }
 
-.hero p {
+.S1 p {
   max-width: 620px;
   color: #26384f;
   font-size: 1.05rem;
+  margin: 20px 0;
 }
 
-/* Botões da seção hero */
-.hero-buttons {
+.S1-buttons {
   display: flex;
   gap: 15px;
   margin-top: 28px;
   flex-wrap: wrap;
 }
 
-.btn {
-  font-family: "Raleway", sans-serif;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  padding: 12px 24px;
-  border-radius: 3px;
-  transition: 0.3s;
-  font-weight: 600;
-  display: inline-block;
-}
-
-.primary {
-  background: var(--vinho);
-  color: var(--creme);
-}
-
-.primary:hover {
-  background: var(--vinho-claro);
-  transform: translateY(-3px);
-}
-
-.secondary {
-  border: 2px solid var(--vinho);
-  color: var(--vinho);
-}
-
-.secondary:hover {
-  background: var(--vinho);
-  color: var(--creme);
-}
-
-/* Área de mídia / carrossel */
-.hero-media {
+/* Carrossel */
+.S1-media {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .carousel {
-  width: 430px;
+  width: 100%;
+  max-width: 430px;
   height: 500px;
   position: relative;
   border-radius: 18px;
@@ -301,7 +223,6 @@ a {
   object-fit: cover;
 }
 
-/* Botões do carrossel */
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -316,23 +237,62 @@ a {
   cursor: pointer;
 }
 
-.carousel-btn:hover {
-  background: var(--vinho);
+.prev { left: 14px; }
+.next { right: 14px; }
+
+/* ✅ RESPONSIVO PARA CELULARES */
+@media (max-width: 850px) {
+  .S1 {
+    grid-template-columns: 1fr;
+    background: var(--creme);
+    text-align: center;
+    gap: 30px;
+    padding: 100px 5% 50px;
+  }
+
+  .S1-content {
+    text-align: center;
+  }
+
+  .S1-logo {
+    margin: 0 auto 20px;
+  }
+
+  .S1-buttons {
+    justify-content: center;
+  }
+
+  .carousel {
+    height: 400px;
+    max-width: 100%;
+  }
 }
 
-.prev {
-  left: 14px;
+@media (max-width: 500px) {
+  .S1 {
+    padding: 90px 4% 40px;
+  }
+
+  .linha1, .linha2 {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  .S1 p {
+    font-size: 0.95rem;
+  }
+
+  .carousel {
+    height: 320px;
+  }
+
+  .carousel-btn {
+    font-size: 1.1rem;
+    padding: 6px 10px;
+  }
 }
 
-.next {
-  right: 14px;
-}
-
-
-/* ==============================================
-   5. ESTRUTURA GERAL DAS SEÇÕES
-   Estilos compartilhados por todas as seções
-============================================== */
+/* 5. ESTRUTURA GERAL DAS SEÇÕES
+   Estilos compartilhados por todas as seções */
 .section {
   padding: 80px 7%;
 }
@@ -367,15 +327,37 @@ a {
 }
 
 
-/* ==============================================
-   6. SEÇÃO SOBRE
-   Conteúdo sobre a instituição/história
-============================================== */
+/*  6. SEÇÃO SOBRE Conteúdo sobre a instituição/história*/
+#sobre {
+  background: linear-gradient(rgba(245, 237, 216, 0.92), rgba(245, 237, 216, 0.92)), 
+              url('imagens/fundo1.png') center center / cover no-repeat !important;
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding: 60px 7%;
+  position: relative;
+}
+
+#sobre .section-title {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+#sobre .section-title h2 {
+  font-family: "Cinzel", serif;
+  font-size: 2.8rem;
+  color: var(--azul);
+  margin: 0;
+}
+
 .sobre-grid {
   display: grid;
   grid-template-columns: 1.3fr 1fr;
   gap: 40px;
   align-items: center;
+  position: relative;
+  z-index: 2;
 }
 
 .lead {
@@ -383,9 +365,10 @@ a {
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 15px;
+  line-height: 1.7;
 }
 
-/* Estatísticas */
+/* Estatísticas — SEU CSS ORIGINAL AQUI */
 .stats {
   display: grid;
   gap: 18px;
@@ -406,6 +389,8 @@ a {
   font-family: "Cinzel", serif;
   color: var(--vinho);
   font-size: 2rem;
+  line-height: 1;
+  margin-bottom: 8px;
 }
 
 .stats span {
@@ -413,127 +398,267 @@ a {
   text-transform: uppercase;
   font-size: 0.75rem;
   letter-spacing: 1px;
+  font-weight: 600;
 }
 
-
-/* ==============================================
-   7. SEÇÃO EVENTO
-   Destaque de evento principal
-============================================== */
-.evento {
-  background: var(--creme);
+/* Estilo dos cards dos padres (igual na imagem) */
+.cards-padres {
+  display: flex;
+  gap: 30px;
+  margin-top: 40px;
 }
 
-.evento-box {
-  max-width: 900px;
-  margin: auto;
-  background: var(--branco);
-  color: var(--azul);
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: var(--sombra);
-  border-left: 6px solid var(--vinho);
+.card-padre {
+  width: 280px;
+  border: 2px solid var(--vinho);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background: #fff;
+}
+
+.fundo-ilustracao {
+  position: relative;
+  height: 380px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 25px;
+  justify-content: center;
 }
 
-.evento-info h3 {
-  color: var(--vinho);
+.desenho-fundo {
+  position: absolute;
+  width: 90%;
+  opacity: 0.15;
+  top: 10%;
+}
+
+.foto-padre {
+  position: relative;
+  width: 85%;
+  z-index: 2;
+  border-radius: 4px;
+}
+
+.legenda-padre {
+  background: linear-gradient(to top, var(--vinho), transparent);
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Responsivo */
+@media (max-width: 990px) {
+  .sobre-grid {
+    grid-template-columns: 1fr;
+  }
+  .cards-padres {
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  #sobre .section-title h2 { font-size: 2rem; }
+  .cards-padres { flex-direction: column; align-items: center; }
+}
+
+/* ==============================================
+   TABELA DE PROGRAMAÇÃO (SEÇÃO EVENTO)
+============================================== */
+.programacao-box {
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  border: 2px solid var(--dourado);
+}.evento {
+  padding-left: 3%;
+  padding-right: 3%;
+}
+.programacao-header {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  background: var(--azul);
+  color: var(--dourado);
   font-family: "Cinzel", serif;
-  margin-bottom: 10px;
+  font-size: 1.3rem;
+  padding: 16px 28px;
+  border-bottom: 2px solid var(--dourado);
+  text-align: center;
 }
 
-.evento-info p {
-  margin-bottom: 8px;
+.programacao-row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  padding: 14px 28px;
+  border-bottom: 1px solid var(--creme-escuro);
+  text-align: center;
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  
+  letter-spacing: 0.5px;
+  color: var(--azul);
+  transition: background 0.2s;
+}
+
+.programacao-row:last-child {
+  border-bottom: none;
+}
+
+@media (max-width: 600px) {
+  .programacao-header,
+  .programacao-row {
+    grid-template-columns: 1fr;
+    text-align: left;
+    gap: 4px;
+  }
 }
 
 
 /* ==============================================
-   8. SEÇÃO MISSAS
-   Grade de horários das missas
+   8. SEÇÃO MISSAS — IMAGEM DE FUNDO + TABELAS ALINHADAS
 ============================================== */
-/* ==============================================
-   8. SEÇÃO MISSAS
-============================================== */
+#missas {
+  /* 🔹 IMAGEM AQUI: coloque o caminho da sua imagem */
+  background: linear-gradient(rgba(13, 37, 69, 0.85), rgba(13, 37, 69, 0.85)), 
+              url('imagens/fundo3.png') center center / cover no-repeat !important;
+  background-attachment: fixed; /* Efeito de paralaxe (opcional) */
+  position: relative;
+}
+
+#missas .missa-conteudo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 7%;
+  width: 100%;
+  margin-top: -30px;
+  gap: 40px;
+  position: relative;
+  z-index: 2; /* Mantém tabelas na frente da imagem */
+}
+
 .missa-box {
-  max-width: 900px;
-  margin: auto;
+  width: 55%;
+  background: var(--creme);
+  color: var(--azul);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  border: 2px solid var(--dourado);
+  display: flex;
+  flex-direction: column;
+}
+
+.coluna-direita {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.tabela-bloco {
+  flex: 1;
+  background: var(--creme);
+  color: var(--azul);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  border: 2px solid var(--dourado);
+  display: flex;
+  flex-direction: column;
+}
+
+.missa-cabecalho {
+  text-align: center;
+  padding: 20px;
+  background: var(--azul);
+  border-bottom: 2px solid var(--dourado);
+  flex-shrink: 0;
+}
+
+.missa-cabecalho h3 {
+  color: var(--creme);
+  font-family: "Cinzel", serif;
+  font-size: 1.6rem;
+  margin-top: 4px;
 }
 
 .missa-tabela {
-  background: var(--creme);
-  color: var(--azul);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  border: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .missa-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.3fr;
-  padding: 18px 24px;
-  font-family: "Raleway", sans-serif;
-  font-size: 0.95rem;
-}
-
-/* Cabeçalho vermelho vinho */
-.header-row {
-  background: #7b1c31;
-  color: #f5edd8;
-  text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 1px;
-  font-weight: 600;
+  grid-template-columns: 1fr 1fr;
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--creme-escuro);
   cursor: default;
+  flex: 1;
+  align-items: center;
 }
 
-/* Linhas alternadas igual na imagem */
+/* Tabela de Missas tem 3 colunas */
+.missa-box .missa-row {
+  grid-template-columns: 1fr 0.8fr 1fr;
+}
+
 .linha-clara {
-  background-color: #f3e9d2;
-  border-bottom: 1px solid #e0ceaa;
+  background: var(--creme);
 }
-
 .linha-escura {
-  background-color: #e8d4b0;
-  border-bottom: 1px solid #d4b88c;
+  background: var(--creme-escuro);
 }
 
-/* Última linha sem borda */
-.destaque-final {
-  border-bottom: none;
+.header-row {
+  background: var(--vinho);
+  color: var(--creme);
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  flex-shrink: 0;
 }
 
-/* Efeito hover suave */
-.missa-row:hover {
-  background: rgba(123, 28, 49, 0.12);
-}
-
-/* RESPONSIVO - CELULAR */
+/* Responsivo */
 @media (max-width: 850px) {
-  .missa-row {
-    grid-template-columns: 1fr;
-    gap: 6px;
-    padding: 15px 20px;
+  #missas .missa-conteudo {
+    flex-direction: column;
+    align-items: center;
+  }
+  .missa-box, .coluna-direita {
+    width: 100%;
+    max-width: 600px;
   }
 }
-
 /* ==============================================
-   9. SEÇÃO PASTORAIS
-   Cards com as atividades pastorais
+   9. SEÇÃO PASTORAIS — MESMA IMAGEM DE FUNDO
 ============================================== */
 #pastorais {
+  /* 🔹 MESMA IMAGEM E ESTILO DA SEÇÃO MISSAS */
+  background: linear-gradient(rgba(245, 237, 216, 0.88), rgba(245, 237, 216, 0.88)), 
+              url('imagens/fundo2.png') center center / cover no-repeat !important;
+  background-attachment: fixed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
 }
 
 #pastorais .section-title {
   text-align: center;
   margin-bottom: 50px;
+  position: relative;
+  z-index: 2;
 }
 
 #pastorais .section-title span {
@@ -555,6 +680,8 @@ a {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 25px;
+  position: relative;
+  z-index: 2; /* Mantém os cartões na frente da imagem */
 }
 
 #pastorais .card {
@@ -579,6 +706,17 @@ a {
 
 #pastorais .card p {
   line-height: 1.7;
+}
+
+/* Responsivo */
+@media (max-width: 850px) {
+  #pastorais .cards {
+    grid-template-columns: 1fr;
+  }
+
+  #pastorais .section-title h2 {
+    font-size: 2rem;
+  }
 }
 
 
@@ -778,6 +916,7 @@ body {
 .snap-section {
   min-height: 100vh;
   scroll-snap-align: start; /* Ponto de parada */
+    
   opacity: 0.75;
   transition: transform 0.6s ease, opacity 0.6s ease;
 }
@@ -1032,7 +1171,7 @@ body {
     height: 54px;
   }
 
-  .wpp-bubble {
+  .wpp-bubble { 
     max-width: 180px;
     padding: 10px 12px;
   }
