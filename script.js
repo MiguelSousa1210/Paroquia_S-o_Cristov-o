@@ -1,119 +1,106 @@
 let slideAtual = 0;
 
 document.addEventListener("DOMContentLoaded", function () {
-  const navbar    = document.getElementById("navbar");
-  const navLinks  = document.getElementById("navLinks");
+  // Elementos da página
+  const navbar = document.getElementById("navbar");
+  const navLinks = document.getElementById("navLinks");
   const hamburger = document.getElementById("hamburger");
-  const slides    = document.querySelectorAll(".slide");
-  const prevBtn   = document.getElementById("prevBtn");
-  const nextBtn   = document.getElementById("nextBtn");
-  const secoes    = document.querySelectorAll(".snap-section");
+  const slides = document.querySelectorAll(".slide");
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+  const secoes = document.querySelectorAll(".snap-section");
+  const wppClose = document.getElementById("wppClose");
+  const wppBubble = document.getElementById("wppBubble");
+  const modal = document.getElementById("historiaModal");
 
-  /* ── Navbar scroll ── */
+
+  // Navbar: efeito ao rolar a página
   window.addEventListener("scroll", function () {
     navbar.classList.toggle("scrolled", window.scrollY > 60);
   });
 
-  /* ── Hamburger ── */
-  hamburger.addEventListener("click", function () {
-    hamburger.classList.toggle("active");
-    navLinks.classList.toggle("open");
-  });
 
-  document.querySelectorAll(".nav-link").forEach(function (link) {
-    link.addEventListener("click", function () {
-      hamburger.classList.remove("active");
-      navLinks.classList.remove("open");
-    });
-  });
-
-  /* ── Carousel ── */
+  // Carrossel de imagens
   function mostrarSlide(n) {
     slides.forEach(s => s.classList.remove("active"));
     slides[n].classList.add("active");
   }
 
   if (slides.length > 0 && nextBtn && prevBtn) {
+    // Próximo slide
     nextBtn.addEventListener("click", function () {
       slideAtual = (slideAtual + 1) % slides.length;
       mostrarSlide(slideAtual);
     });
+
+    // Slide anterior
     prevBtn.addEventListener("click", function () {
       slideAtual = (slideAtual - 1 + slides.length) % slides.length;
       mostrarSlide(slideAtual);
     });
+
+    // Troca automática a cada 5 segundos
     setInterval(function () {
       slideAtual = (slideAtual + 1) % slides.length;
       mostrarSlide(slideAtual);
     }, 5000);
   }
 
-  /* ── Missas highlight ── */
-  const linhasMissa = document.querySelectorAll(".missa-row:not(.header-row)");
-  linhasMissa.forEach(function (linha) {
-    linha.addEventListener("click", function () {
-      linhasMissa.forEach(l => (l.style.background = ""));
-      linha.style.background = "rgba(123, 28, 49, 0.16)";
-    });
-  });
-
-  /* ── Chat WhatsApp ── */
-  const wppClose  = document.getElementById("wppClose");
-  const wppBubble = document.getElementById("wppBubble");
+//<!-- Utilizado ChatGPT para auxiliar na criação desta seção de FAQ --> 
+  // Chat WhatsApp: fechar bolha
   if (wppClose && wppBubble) {
     wppClose.addEventListener("click", function () {
       wppBubble.classList.add("hidden");
     });
   }
 
-  /* ════════════════════════════════════════════
-     ZOOM POR SEÇÃO — Intersection Observer
-     Scroll nativo funciona normalmente.
-     Quando uma seção ocupa >= 50% da tela,
-     ela recebe section-active e faz o zoom.
-  ════════════════════════════════════════════ */
 
-  const observador = new IntersectionObserver(
+  
+  // Zoom nas seções ao aparecer na tela
+  const observadorZoom = new IntersectionObserver(
     function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("section-active");
-        } else {
-          entry.target.classList.remove("section-active");
-        }
+        entry.target.classList.toggle("section-active", entry.isIntersecting);
       });
     },
-    { threshold: 0.4 }   /* dispara quando 40% da seção está visível */
+    { threshold: 0.4 } // Ativa quando 40% da seção estiver visível
   );
 
   secoes.forEach(function (secao) {
-    observador.observe(secao);
+    observadorZoom.observe(secao);
   });
 
-  /* ── Modal história ── */
-  const modal = document.getElementById("historiaModal");
+
+  // ==============================
+  // Modal: fechar ao clicar fora
+  // ==============================
   if (modal) {
     modal.addEventListener("click", function (e) {
       if (e.target === modal) fecharHistoria();
     });
   }
-});
 
-/* ── Funções globais do modal ── */
+}); // Fim do DOMContentLoaded
+
+
+//<!-- Utilizado ChatGPT para auxiliar na criação desta seção de FAQ --> 
+
+// Funções do Modal de História
 function abrirHistoria(numero) {
-  const modal  = document.getElementById("historiaModal");
+  const modal = document.getElementById("historiaModal");
   const titulo = document.getElementById("modalTitulo");
-  const texto  = document.getElementById("modalTexto");
+  const texto = document.getElementById("modalTexto");
 
   if (numero === 1) {
     titulo.textContent = "Nosso Pároco";
-    texto.textContent  =
+    texto.textContent =
       "A Paróquia São Cristóvão foi fundada há 30 anos com o sonho de " +
       "construir uma comunidade de fé sólida no bairro.";
   }
+
   if (numero === 2) {
     titulo.textContent = "Vigário Paroquial";
-    texto.textContent  =
+    texto.textContent =
       "Nossa missão é evangelizar, acolher e servir. Inspirados por " +
       "São Cristóvão, buscamos ser ponte entre as pessoas e Deus.";
   }
@@ -123,16 +110,14 @@ function abrirHistoria(numero) {
 
 function fecharHistoria() {
   document.getElementById("historiaModal").classList.remove("aberto");
-}/* ──────────────────────────────
-   NAVEGAÇÃO POR SETAS DO TECLADO
-────────────────────────────── */
+}
 
+// Navegação por teclado (setas cima/baixo)
 const secoesTela = document.querySelectorAll(".snap-section");
 let indiceAtual = 0;
 
 function irParaSecao(indice) {
   if (indice < 0 || indice >= secoesTela.length) return;
-
   indiceAtual = indice;
 
   secoesTela[indice].scrollIntoView({
@@ -141,8 +126,8 @@ function irParaSecao(indice) {
   });
 }
 
-window.addEventListener("keydown", function(e) {
-
+// Detecta teclas pressionadas
+window.addEventListener("keydown", function (e) {
   if (e.key === "ArrowDown") {
     e.preventDefault();
     irParaSecao(indiceAtual + 1);
@@ -152,12 +137,10 @@ window.addEventListener("keydown", function(e) {
     e.preventDefault();
     irParaSecao(indiceAtual - 1);
   }
-
 });
 
-/* Descobre qual seção está visível */
-
-const observerTeclado = new IntersectionObserver(
+// Atualiza índice da seção atual ao rolar
+const observadorTeclado = new IntersectionObserver(
   (entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -165,11 +148,25 @@ const observerTeclado = new IntersectionObserver(
       }
     });
   },
-  {
-    threshold: 0.7
-  }
+  { threshold: 0.7 }
 );
 
 secoesTela.forEach(secao => {
-  observerTeclado.observe(secao);
+  observadorTeclado.observe(secao);
 });
+
+//<!-- Utilizado ChatGPT para auxiliar na criação desta seção de FAQ --> 
+// Logo: voltar ao início ao clicar
+const logoLink = document.getElementById("logoLink");
+if (logoLink) {
+  logoLink.style.cursor = "pointer"; // Mostra a mãozinha ao passar o mouse
+  logoLink.addEventListener("click", function () {
+    document.getElementById("inicio").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+    // Fecha o menu mobile se estiver aberto
+    hamburger.classList.remove("active");
+    navLinks.classList.remove("open");
+  });
+}
